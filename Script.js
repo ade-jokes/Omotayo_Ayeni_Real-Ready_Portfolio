@@ -88,12 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
-    // Download Resume Button
-    const downloadResumeBtn = document.getElementById('downloadResume');
-    downloadResumeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Add your PDF resume file and update this link!\n\nFor now, this is a placeholder. Once you add your resume PDF, replace the # in the href with the actual file path.');
-    });
+
+
 
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -196,4 +192,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
- 

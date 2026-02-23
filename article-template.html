@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title - Omotayo Ayeni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A4D3C;
+            --primary-light: #0D6B51;
+            --primary-dark: #073528;
+            --accent: #3B82F6;
+            --accent-light: #60A5FA;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.8;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Article Header */
+        .article-header {
+            padding-top: 120px;
+            padding-bottom: 3rem;
+            text-align: center;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-excerpt {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .article-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Article Content */
+        .article-content {
+            background: var(--bg-white);
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 2.5rem 0 1.5rem;
+            line-height: 1.3;
+        }
+
+        .article-content h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .article-content p {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent);
+            background: var(--bg-light);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-light);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .article-content code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .article-content pre {
+            background: var(--text-dark);
+            color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .article-content pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .article-content a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0;
+        }
+
+        /* Author Bio */
+        .author-bio {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .author-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .author-info h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Back to Articles */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.5rem;
+            }
+
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .article-content p,
+            .article-content ul,
+            .article-content ol {
+                font-size: 1.1rem;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="portfolio-new.html" class="logo">OMO-ZEE</a>
+            <ul class="nav-links">
+                <li><a href="portfolio-new.html">Home</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="portfolio-new.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <article>
+        <div class="container">
+            <a href="articles.html" class="back-link">← Back to Articles</a>
+
+            <!-- Article Header -->
+            <header class="article-header">
+                <span class="article-category">Technology</span>
+                <h1 class="article-title">Your Article Title Goes Here</h1>
+                <div class="article-meta">
+                    <span>📅 January 28, 2026</span>
+                    <span>⏱️ 5 min read</span>
+                    <span>✍️ Omotayo Ayeni</span>
+                </div>
+                <p class="article-excerpt">
+                    Write a compelling 2-3 sentence summary of your article here. This should hook the reader and make them want to continue reading the full article.
+                </p>
+                <div class="article-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Tutorial</span>
+                </div>
+            </header>
+
+            <!-- Main Article Content -->
+            <div class="article-content">
+                <!-- Introduction -->
+                <p>
+                    Start with an engaging introduction paragraph. Explain why this topic matters and what the reader will learn. Make it personal and relatable.
+                </p>
+
+                <p>
+                    Continue building context in your second paragraph. You can share a personal experience, industry insight, or pose a question that your article will answer.
+                </p>
+
+                <!-- First Major Section -->
+                <h2>First Main Section Heading</h2>
+                
+                <p>
+                    Write your main content here. Break down complex ideas into digestible paragraphs. Each paragraph should focus on one key idea.
+                </p>
+
+                <p>
+                    Use multiple paragraphs to explain your points thoroughly. Don't rush—take time to explain concepts clearly.
+                </p>
+
+                <!-- Subsection -->
+                <h3>Subsection Title</h3>
+                
+                <p>
+                    You can use h3 headings for subsections within your main sections. This helps organize your content and makes it easier to scan.
+                </p>
+
+                <!-- Code Example (if relevant) -->
+                <pre><code>// Example code block
+function example() {
+    console.log("Your code examples go here");
+    return true;
+}</code></pre>
+
+                <!-- Lists -->
+                <p>Here are some key points to remember:</p>
+                <ul>
+                    <li>First important point with detailed explanation</li>
+                    <li>Second important point with context</li>
+                    <li>Third important point and why it matters</li>
+                </ul>
+
+                <!-- Blockquote -->
+                <blockquote>
+                    "Use blockquotes for important quotes, key takeaways, or to emphasize crucial information that you want readers to remember."
+                </blockquote>
+
+                <!-- Second Major Section -->
+                <h2>Second Main Section Heading</h2>
+                
+                <p>
+                    Continue with your next major point. Structure is important—each section should flow naturally into the next.
+                </p>
+
+                <!-- Highlight Box for Key Information -->
+                <div class="highlight-box">
+                    <h3>💡 Pro Tip</h3>
+                    <p>
+                        Use highlight boxes to draw attention to important tips, warnings, or key insights that readers shouldn't miss.
+                    </p>
+                </div>
+
+                <!-- Numbered List (for steps or processes) -->
+                <p>If you're explaining a process, use numbered lists:</p>
+                <ol>
+                    <li>First step with clear instructions</li>
+                    <li>Second step building on the first</li>
+                    <li>Third step completing the process</li>
+                </ol>
+
+                <!-- Third Section -->
+                <h2>Third Main Section Heading</h2>
+                
+                <p>
+                    Add as many sections as you need to fully cover your topic. Generally, 3-5 main sections work well for most articles.
+                </p>
+
+                <p>
+                    Remember to use inline <code>code snippets</code> when referencing technical terms or commands.
+                </p>
+
+                <!-- Conclusion -->
+                <h2>Conclusion</h2>
+                
+                <p>
+                    Wrap up your article by summarizing the key points. What should readers take away from this article?
+                </p>
+
+                <p>
+                    End with a call to action or encouraging words. Invite readers to try what you've taught, share their thoughts, or explore related topics.
+                </p>
+
+                <p>
+                    You can also include links to <a href="#">related resources</a> or <a href="#">further reading</a> materials.
+                </p>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-image">OA</div>
+                <div class="author-info">
+                    <h3>Omotayo Ayeni</h3>
+                    <p>
+                        Software Engineering student at Pan-Atlantic University, passionate about building human-centered technology. 
+                        When I'm not coding, I'm leading tech initiatives and mentoring fellow students in UI/UX design and software development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Omotayo Ayeni. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
